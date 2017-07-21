@@ -32,31 +32,29 @@ public class TileManager : MonoBehaviour
 
 
 
-    // instances
-    private MapManager mapManager;
-
-
+    [Header("Room Info")]
     public GameObject roomPrefab;
     public Transform roomParent;
 
 
 
     // styling
+    [Header("Styling")]
     public List<Sprite> floors = new List<Sprite>();
-    public List<Sprite> decor = new List<Sprite>();
 
 
     // prefabs
+    [Header("Prefabs")]
+    public GameObject itemPrefab;
+
+    [Header("Wall Switch")]
     public GameObject wallSwitchPrefab, wallSwitchButtonPrefab;
 
+    [Header("Multi-Part Assembly")]
+    public Sprite partA, partB, partC;
+    public GameObject partAssemblyPrefab;
 
 
-
-
-    private void Start()
-    {
-        mapManager = MapManager.instance;
-    }
 
 
     public GameObject CreateTile(Vector2 pos)
@@ -69,14 +67,20 @@ public class TileManager : MonoBehaviour
     }
 
 
-    public Sprite RandomFloor()
+    public Sprite RandomFloor(Transform roomTransform)
     {
-        return floors[Random.Range(0, floors.Count)];
-    }
+        Sprite randomFloor = floors[Random.Range(0, floors.Count)];
 
-    public Sprite RandomDecor()
-    {
-        return decor[Random.Range(0, decor.Count)];
+        if (randomFloor.name == "Grass")
+        {
+            DecorManager.instance.DecorateOutdoor(roomTransform);
+        }
+        else
+        {
+            DecorManager.instance.DecorateIndoor(roomTransform);
+        }
+
+        return randomFloor;
     }
 
 

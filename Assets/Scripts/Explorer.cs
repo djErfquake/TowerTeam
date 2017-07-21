@@ -8,14 +8,16 @@ public class Explorer : MonoBehaviour
     //public GameObject landPrefab;
     //public Transform landParent;
 
-
-
-    
-
+    public ItemCollection itemCollection;
 
 
 
 
+
+
+
+
+    /*
     public void OnTriggerExit2D(Collider2D collision)
     {
         Vector2 characterPosition = transform.position;
@@ -50,11 +52,11 @@ public class Explorer : MonoBehaviour
 
         MapManager.instance.AddRoomTile(newPosition);
     }
+    */
 
 
 
-
-
+    private float initialMoveSpeed = 0.5f;
 
     private void Update()
     {
@@ -74,6 +76,56 @@ public class Explorer : MonoBehaviour
         else if (Input.GetKey("right"))
         {
             transform.Rotate(-rotateSpeed * Vector3.forward);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            initialMoveSpeed = moveSpeed;
+            moveSpeed = 1.5f;
+        }
+        else if (Input.GetKeyDown(KeyCode.Space))
+        {
+            moveSpeed = initialMoveSpeed;
+        }
+    }
+
+
+
+
+    private List<GameObject> nextTo = new List<GameObject>();
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        GameObject collider = collision.gameObject;
+        if (collider.tag == "Pedestal")
+        {
+            nextTo.Add(collider);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        GameObject collider = collision.gameObject;
+        if (collider.tag == "Pedestal" && nextTo.Contains(collider))
+        {
+            nextTo.Remove(collider);
+        }
+    }
+
+
+    public void ItemClicked(Sprite item)
+    {
+        foreach (GameObject nextToGo in nextTo)
+        {
+            if (nextToGo.GetComponent<StatuePedestal>() != null)
+            {
+                if (nextToGo.GetComponent<StatuePedestal>().AddItem(item))
+                {
+                    // do something
+                    itemCollection.RemoveItem(item);
+                }
+                
+            }
         }
     }
 

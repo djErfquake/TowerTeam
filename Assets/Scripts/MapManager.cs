@@ -19,6 +19,7 @@ public class MapManager : MonoBehaviour
 
         JsonNode levelConfig = ConfigHelper.Load(Application.streamingAssetsPath + "/levelConfig.json");
         JsonNode level = levelConfig["levels"][0];
+        int monkeyParts = 0;
 
 
         for (int r = 0; r < size.y; r++)
@@ -42,7 +43,7 @@ public class MapManager : MonoBehaviour
             {
                 string tileName = r.ToString() + c.ToString();
                 GameObject roomTile = GameObject.Find(tileName);
-                roomTile.GetComponent<SpriteRenderer>().sprite = tileManager.RandomFloor();
+                roomTile.GetComponent<SpriteRenderer>().sprite = tileManager.RandomFloor(roomTile.transform);
                 Room room = roomTile.GetComponent<Room>();
 
                 //RandomizeDoorways(roomTile);
@@ -64,9 +65,36 @@ public class MapManager : MonoBehaviour
                 {
                     if (roomLetter == TileManager.ROOM_WALL_SWITCH)
                     {
-                        GameObject wallSwitch = Instantiate(TileManager.instance.wallSwitchButtonPrefab);//, Vector2.zero, Quaternion.identity, roomTile.transform);
+                        GameObject wallSwitch = Instantiate(tileManager.wallSwitchButtonPrefab);
                         wallSwitch.transform.parent = roomTile.transform;
-                        wallSwitch.transform.localPosition = Vector2.zero;
+                        wallSwitch.transform.localPosition = roomTile.GetComponentInChildren<RoomWithItems>().GetRandomItemPosition() / wallSwitch.transform.localScale.x;
+                    }
+                    else if (roomLetter == TileManager.ROOM_PART)
+                    {
+                        GameObject monkeyPart = Instantiate(tileManager.itemPrefab);
+                        monkeyPart.transform.parent = roomTile.transform;
+                        monkeyPart.transform.localPosition = roomTile.GetComponentInChildren<RoomWithItems>().GetRandomItemPosition() / monkeyPart.transform.localScale.x;
+                        if (monkeyParts == 0)
+                        {
+                            monkeyPart.GetComponent<SpriteRenderer>().sprite = tileManager.partA;
+                        }
+                        else if (monkeyParts == 1)
+                        {
+                            monkeyPart.GetComponent<SpriteRenderer>().sprite = tileManager.partB;
+                        }
+                        else if (monkeyParts == 2)
+                        {
+                            monkeyPart.GetComponent<SpriteRenderer>().sprite = tileManager.partC;
+                        }
+                        monkeyParts++;
+                        
+                    }
+                    else if (roomLetter == TileManager.ROOM_PART_ASSEMBLY)
+                    {
+                        GameObject pedestal = Instantiate(tileManager.partAssemblyPrefab);
+                        pedestal.transform.parent = roomTile.transform;
+                        pedestal.transform.localPosition = roomTile.GetComponentInChildren<RoomWithItems>().GetRandomItemPosition() / pedestal.transform.localScale.x;
+                        pedestal.GetComponent<StatuePedestal>().completeAction = MonkeyPartsAssembled;
                     }
                 }
 
@@ -153,6 +181,11 @@ public class MapManager : MonoBehaviour
         {
             room.Value.GetComponent<Room>().RemoveWallSwitch();
         }
+    }
+
+    public void MonkeyPartsAssembled()
+    {
+        Debug.Log("Monkey Parts Assembled.  Show stairs to next floor/level");
     }
 
 

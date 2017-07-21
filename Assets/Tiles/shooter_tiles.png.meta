@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 65d1302bbeeb9604e983fd5db6938a58
-timeCreated: 1497375887
+timeCreated: 1500060132
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
@@ -136,7 +136,7 @@ TextureImporter:
     21300258: shooter_tiles_129
     21300260: shooter_tiles_130
     21300262: shooter_tiles_131
-    21300264: shooter_tiles_132
+    21300264: plant_indoor
     21300266: shooter_tiles_133
     21300268: shooter_tiles_134
     21300270: shooter_tiles_135
@@ -161,7 +161,7 @@ TextureImporter:
     21300308: shooter_tiles_154
     21300310: shooter_tiles_155
     21300312: shooter_tiles_156
-    21300314: shooter_tiles_157
+    21300314: aquarium
     21300316: shooter_tiles_158
     21300318: shooter_tiles_159
     21300320: shooter_tiles_160
@@ -182,12 +182,12 @@ TextureImporter:
     21300350: shooter_tiles_175
     21300352: shooter_tiles_176
     21300354: shooter_tiles_177
-    21300356: shooter_tiles_178
+    21300356: tree_large
     21300358: shooter_tiles_179
-    21300360: shooter_tiles_180
-    21300362: shooter_tiles_181
+    21300360: tree_small
+    21300362: tree_large_red
     21300364: shooter_tiles_182
-    21300366: shooter_tiles_183
+    21300366: tree_small_red
     21300368: shooter_tiles_184
     21300370: shooter_tiles_185
     21300372: shooter_tiles_186
@@ -210,7 +210,7 @@ TextureImporter:
     21300406: shooter_tiles_203
     21300408: shooter_tiles_204
     21300410: shooter_tiles_205
-    21300412: shooter_tiles_206
+    21300412: plant_outdoor
     21300414: shooter_tiles_207
     21300416: shooter_tiles_208
     21300418: shooter_tiles_209
@@ -234,11 +234,11 @@ TextureImporter:
     21300454: shooter_tiles_227
     21300456: shooter_tiles_228
     21300458: shooter_tiles_229
-    21300460: shooter_tiles_230
-    21300462: shooter_tiles_231
-    21300464: shooter_tiles_232
-    21300466: shooter_tiles_233
-    21300468: shooter_tiles_234
+    21300460: bush
+    21300462: bush_red
+    21300464: rock_1
+    21300466: rock_2
+    21300468: rock_3
     21300470: shooter_tiles_235
     21300472: shooter_tiles_236
     21300474: shooter_tiles_237
@@ -397,10 +397,10 @@ TextureImporter:
     21300780: shooter_tiles_390
     21300782: shooter_tiles_391
     21300784: shooter_tiles_392
-    21300786: shooter_tiles_393
+    21300786: rug_red
     21300788: shooter_tiles_394
     21300790: shooter_tiles_395
-    21300792: shooter_tiles_396
+    21300792: rug_green
     21300794: shooter_tiles_397
     21300796: shooter_tiles_398
     21300798: shooter_tiles_399
@@ -446,11 +446,11 @@ TextureImporter:
     21300878: shooter_tiles_439
     21300880: shooter_tiles_440
     21300882: shooter_tiles_441
-    21300884: shooter_tiles_442
+    21300884: couch_green
     21300886: shooter_tiles_443
     21300888: shooter_tiles_444
-    21300890: shooter_tiles_445
-    21300892: shooter_tiles_446
+    21300890: chair_green
+    21300892: chair_blue
     21300894: shooter_tiles_447
     21300896: shooter_tiles_448
     21300898: shooter_tiles_449
@@ -471,12 +471,12 @@ TextureImporter:
     21300928: shooter_tiles_464
     21300930: shooter_tiles_465
     21300932: shooter_tiles_466
-    21300934: shooter_tiles_467
+    21300934: couch_red
     21300936: shooter_tiles_468
     21300938: shooter_tiles_469
-    21300940: shooter_tiles_470
-    21300942: shooter_tiles_471
-    21300944: shooter_tiles_472
+    21300940: chair_red
+    21300942: chair_red_small
+    21300944: table_small
     21300946: shooter_tiles_473
     21300948: shooter_tiles_474
     21300950: shooter_tiles_475
@@ -497,12 +497,12 @@ TextureImporter:
     21300980: shooter_tiles_490
     21300982: shooter_tiles_491
     21300984: shooter_tiles_492
-    21300986: shooter_tiles_493
+    21300986: couch_black
     21300988: shooter_tiles_494
     21300990: shooter_tiles_495
     21300992: shooter_tiles_496
-    21300994: shooter_tiles_497
-    21300996: shooter_tiles_498
+    21300994: chair_black
+    21300996: table_large
     21300998: shooter_tiles_499
     21301000: shooter_tiles_500
     21301002: shooter_tiles_501
@@ -523,16 +523,16 @@ TextureImporter:
     21301032: shooter_tiles_516
     21301034: shooter_tiles_517
     21301036: shooter_tiles_518
-    21301038: shooter_tiles_519
-    21301040: shooter_tiles_520
-    21301042: shooter_tiles_521
-    21301044: shooter_tiles_522
-    21301046: shooter_tiles_523
+    21301038: chair_1
+    21301040: chair2
+    21301042: chair_3
+    21301044: chair_4
+    21301046: tv_flatscreen
     21301048: shooter_tiles_524
-    21301050: shooter_tiles_525
-    21301052: shooter_tiles_526
-    21301054: shooter_tiles_527
-    21301056: shooter_tiles_528
+    21301050: tv_brown
+    21301052: tv_tan
+    21301054: tv_black
+    21301056: tv_small
     21301058: shooter_tiles_529
   serializedVersion: 4
   mipmaps:
@@ -2348,7 +2348,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shooter_tiles_132
+      name: plant_indoor
       rect:
         serializedVersion: 2
         x: 3200
@@ -2673,25 +2673,12 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shooter_tiles_157
+      name: aquarium
       rect:
         serializedVersion: 2
         x: 2944
         y: 1792
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: shooter_tiles_158
-      rect:
-        serializedVersion: 2
-        x: 3072
-        y: 1792
-        width: 128
+        width: 256
         height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -2946,33 +2933,20 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shooter_tiles_178
+      name: tree_large
       rect:
         serializedVersion: 2
         x: 2304
-        y: 1664
-        width: 128
-        height: 128
+        y: 1536
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shooter_tiles_179
-      rect:
-        serializedVersion: 2
-        x: 2432
-        y: 1664
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: shooter_tiles_180
+      name: tree_small
       rect:
         serializedVersion: 2
         x: 2560
@@ -2985,33 +2959,20 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shooter_tiles_181
+      name: tree_large_red
       rect:
         serializedVersion: 2
         x: 2688
-        y: 1664
-        width: 128
-        height: 128
+        y: 1536
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shooter_tiles_182
-      rect:
-        serializedVersion: 2
-        x: 2816
-        y: 1664
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: shooter_tiles_183
+      name: tree_small_red
       rect:
         serializedVersion: 2
         x: 2944
@@ -3284,62 +3245,10 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shooter_tiles_204
-      rect:
-        serializedVersion: 2
-        x: 2304
-        y: 1536
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: shooter_tiles_205
-      rect:
-        serializedVersion: 2
-        x: 2432
-        y: 1536
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: shooter_tiles_206
+      name: plant_outdoor
       rect:
         serializedVersion: 2
         x: 2560
-        y: 1536
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: shooter_tiles_207
-      rect:
-        serializedVersion: 2
-        x: 2688
-        y: 1536
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: shooter_tiles_208
-      rect:
-        serializedVersion: 2
-        x: 2816
         y: 1536
         width: 128
         height: 128
@@ -3622,7 +3531,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shooter_tiles_230
+      name: bush
       rect:
         serializedVersion: 2
         x: 2304
@@ -3635,7 +3544,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shooter_tiles_231
+      name: bush_red
       rect:
         serializedVersion: 2
         x: 2432
@@ -3648,7 +3557,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shooter_tiles_232
+      name: rock_1
       rect:
         serializedVersion: 2
         x: 2560
@@ -3661,7 +3570,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shooter_tiles_233
+      name: rock_2
       rect:
         serializedVersion: 2
         x: 2688
@@ -3674,7 +3583,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shooter_tiles_234
+      name: rock_3
       rect:
         serializedVersion: 2
         x: 2816
@@ -5377,84 +5286,6 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shooter_tiles_365
-      rect:
-        serializedVersion: 2
-        x: 2304
-        y: 768
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: shooter_tiles_366
-      rect:
-        serializedVersion: 2
-        x: 2432
-        y: 768
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: shooter_tiles_367
-      rect:
-        serializedVersion: 2
-        x: 2560
-        y: 768
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: shooter_tiles_368
-      rect:
-        serializedVersion: 2
-        x: 2688
-        y: 768
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: shooter_tiles_369
-      rect:
-        serializedVersion: 2
-        x: 2816
-        y: 768
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: shooter_tiles_370
-      rect:
-        serializedVersion: 2
-        x: 2944
-        y: 768
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
       name: shooter_tiles_371
       rect:
         serializedVersion: 2
@@ -5728,78 +5559,26 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shooter_tiles_392
+      name: rug_red
       rect:
         serializedVersion: 2
         x: 2304
-        y: 640
-        width: 128
-        height: 128
+        y: 512
+        width: 384
+        height: 384
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shooter_tiles_393
-      rect:
-        serializedVersion: 2
-        x: 2432
-        y: 640
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: shooter_tiles_394
-      rect:
-        serializedVersion: 2
-        x: 2560
-        y: 640
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: shooter_tiles_395
+      name: rug_green
       rect:
         serializedVersion: 2
         x: 2688
-        y: 640
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: shooter_tiles_396
-      rect:
-        serializedVersion: 2
-        x: 2816
-        y: 640
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: shooter_tiles_397
-      rect:
-        serializedVersion: 2
-        x: 2944
-        y: 640
-        width: 128
-        height: 128
+        y: 512
+        width: 384
+        height: 384
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -6079,84 +5858,6 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shooter_tiles_419
-      rect:
-        serializedVersion: 2
-        x: 2304
-        y: 512
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: shooter_tiles_420
-      rect:
-        serializedVersion: 2
-        x: 2432
-        y: 512
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: shooter_tiles_421
-      rect:
-        serializedVersion: 2
-        x: 2560
-        y: 512
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: shooter_tiles_422
-      rect:
-        serializedVersion: 2
-        x: 2688
-        y: 512
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: shooter_tiles_423
-      rect:
-        serializedVersion: 2
-        x: 2816
-        y: 512
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: shooter_tiles_424
-      rect:
-        serializedVersion: 2
-        x: 2944
-        y: 512
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
       name: shooter_tiles_425
       rect:
         serializedVersion: 2
@@ -6378,12 +6079,12 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shooter_tiles_442
+      name: couch_green
       rect:
         serializedVersion: 2
         x: 1792
-        y: 384
-        width: 128
+        y: 382
+        width: 384
         height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -6391,33 +6092,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shooter_tiles_443
-      rect:
-        serializedVersion: 2
-        x: 1920
-        y: 384
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: shooter_tiles_444
-      rect:
-        serializedVersion: 2
-        x: 2048
-        y: 384
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: shooter_tiles_445
+      name: chair_green
       rect:
         serializedVersion: 2
         x: 2176
@@ -6430,7 +6105,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shooter_tiles_446
+      name: chair_blue
       rect:
         serializedVersion: 2
         x: 2304
@@ -6703,12 +6378,12 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shooter_tiles_467
+      name: couch_red
       rect:
         serializedVersion: 2
         x: 1792
         y: 256
-        width: 128
+        width: 384
         height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -6716,33 +6391,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shooter_tiles_468
-      rect:
-        serializedVersion: 2
-        x: 1920
-        y: 256
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: shooter_tiles_469
-      rect:
-        serializedVersion: 2
-        x: 2048
-        y: 256
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: shooter_tiles_470
+      name: chair_red
       rect:
         serializedVersion: 2
         x: 2176
@@ -6755,7 +6404,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shooter_tiles_471
+      name: chair_red_small
       rect:
         serializedVersion: 2
         x: 2304
@@ -6768,7 +6417,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shooter_tiles_472
+      name: table_small
       rect:
         serializedVersion: 2
         x: 2432
@@ -7041,38 +6690,12 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shooter_tiles_493
+      name: couch_black
       rect:
         serializedVersion: 2
         x: 1792
         y: 128
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: shooter_tiles_494
-      rect:
-        serializedVersion: 2
-        x: 1920
-        y: 128
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: shooter_tiles_495
-      rect:
-        serializedVersion: 2
-        x: 2048
-        y: 128
-        width: 128
+        width: 384
         height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -7093,7 +6716,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shooter_tiles_497
+      name: chair_black
       rect:
         serializedVersion: 2
         x: 2304
@@ -7106,7 +6729,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shooter_tiles_498
+      name: table_large
       rect:
         serializedVersion: 2
         x: 2432
@@ -7379,7 +7002,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shooter_tiles_519
+      name: chair_1
       rect:
         serializedVersion: 2
         x: 1792
@@ -7392,7 +7015,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shooter_tiles_520
+      name: chair2
       rect:
         serializedVersion: 2
         x: 1920
@@ -7405,7 +7028,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shooter_tiles_521
+      name: chair_3
       rect:
         serializedVersion: 2
         x: 2048
@@ -7418,7 +7041,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shooter_tiles_522
+      name: chair_4
       rect:
         serializedVersion: 2
         x: 2176
@@ -7431,12 +7054,12 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shooter_tiles_523
+      name: tv_flatscreen
       rect:
         serializedVersion: 2
         x: 2304
         y: 0
-        width: 128
+        width: 256
         height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -7444,20 +7067,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shooter_tiles_524
-      rect:
-        serializedVersion: 2
-        x: 2432
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: shooter_tiles_525
+      name: tv_brown
       rect:
         serializedVersion: 2
         x: 2560
@@ -7470,7 +7080,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shooter_tiles_526
+      name: tv_tan
       rect:
         serializedVersion: 2
         x: 2688
@@ -7483,7 +7093,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shooter_tiles_527
+      name: tv_black
       rect:
         serializedVersion: 2
         x: 2816
@@ -7496,7 +7106,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shooter_tiles_528
+      name: tv_small
       rect:
         serializedVersion: 2
         x: 2944
