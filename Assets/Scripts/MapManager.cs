@@ -96,6 +96,13 @@ public class MapManager : MonoBehaviour
                         pedestal.transform.localPosition = roomTile.GetComponentInChildren<RoomWithItems>().GetRandomItemPosition() / pedestal.transform.localScale.x;
                         pedestal.GetComponent<StatuePedestal>().completeAction = MonkeyPartsAssembled;
                     }
+                    else if (roomLetter == TileManager.ROOM_BLOCKER)
+                    {
+                        GameObject blocker = Instantiate(tileManager.blockerPrefab);
+                        blocker.transform.parent = roomTile.transform;
+                        blocker.transform.localScale = Vector3.one;
+                        blocker.transform.localPosition = new Vector2(0, -2.3f);
+                    }
                 }
 
                 char previousRoomLetter = TileManager.WALL_VERTICAL;

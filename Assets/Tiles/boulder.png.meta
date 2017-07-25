@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 345a3898965f61e42b4f64858d5be942
-timeCreated: 1500670138
+guid: 7f57d62170750674f88cbbe8e510c63d
+timeCreated: 1501003393
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Pedestal_0
-    21300002: Pedestal_1
-    21300004: Pedestal_2
-    21300006: Pedestal_3
+    21300000: boulder_0
+    21300002: boulder_1
+    21300004: boulder_2
+    21300006: boulder_3
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -106,54 +106,54 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Pedestal_0
+      name: boulder_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 150
-        height: 382
-      alignment: 9
-      pivot: {x: 0.5, y: 0.09}
+        width: 214
+        height: 227
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Pedestal_1
+      name: boulder_1
       rect:
         serializedVersion: 2
-        x: 150
-        y: 0
-        width: 150
-        height: 382
-      alignment: 9
-      pivot: {x: 0.5, y: 0.09}
+        x: 226
+        y: 3
+        width: 220
+        height: 221
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Pedestal_2
+      name: boulder_2
       rect:
         serializedVersion: 2
-        x: 300
-        y: 0
-        width: 150
-        height: 382
-      alignment: 9
-      pivot: {x: 0.5, y: 0.09}
+        x: 457
+        y: 8
+        width: 215
+        height: 211
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Pedestal_3
+      name: boulder_3
       rect:
         serializedVersion: 2
-        x: 450
-        y: 0
-        width: 150
-        height: 382
-      alignment: 9
-      pivot: {x: 0.5, y: 0.09}
+        x: 695
+        y: 4
+        width: 212
+        height: 218
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

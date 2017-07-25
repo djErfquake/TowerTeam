@@ -5,17 +5,101 @@ using UnityEngine;
 public class Explorer : MonoBehaviour
 {
     public float moveSpeed = 10f, rotateSpeed = 5f;
+    private float initialMoveSpeed = 0.5f;
+
+    private  Vector3 itemHoldOffset = Vector3.up * 0.05f; 
+    private GameObject itemInRange;
+    private List<GameObject> nearbyPedestals = new List<GameObject>();
+
+
+    private void Update()
+    {
+        if (Input.GetKey("up"))
+        {
+            transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
+        }
+        else if (Input.GetKey("down"))
+        {
+            transform.Translate(Vector3.right * -moveSpeed * Time.deltaTime);
+        }
+
+        if (Input.GetKey("left"))
+        {
+            transform.Rotate(rotateSpeed * Vector3.forward);
+        }
+        else if (Input.GetKey("right"))
+        {
+            transform.Rotate(-rotateSpeed * Vector3.forward);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            initialMoveSpeed = moveSpeed;
+            moveSpeed = 1.5f;
+        }
+        else if (Input.GetKeyUp(KeyCode.Space))
+        {
+            moveSpeed = initialMoveSpeed;
+        }
+
+        if (itemInRange != null && Input.GetKey(KeyCode.Z))
+        {
+            itemInRange.transform.position = transform.position + itemHoldOffset;
+        }
+        else if (itemInRange != null && Input.GetKeyUp(KeyCode.Z))
+        {
+            foreach (GameObject nextToGo in nearbyPedestals)
+            {
+                StatuePedestal pedestal = nextToGo.GetComponent<StatuePedestal>();
+                if (pedestal != null && pedestal.AddItem(itemInRange.GetComponent<SpriteRenderer>().sprite))
+                {
+                    Destroy(itemInRange);
+                }
+            }
+        }
+    }
+
+
+
+
+    
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        GameObject collider = collision.gameObject;
+
+        if (collider.CompareTag("Item"))
+        {
+            itemInRange = collider;
+        }
+        else if (collider.CompareTag("Pedestal"))
+        {
+            nearbyPedestals.Add(collider);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        GameObject collider = collision.gameObject;
+
+        if (collider.CompareTag("Item"))
+        {
+            itemInRange = null;
+        }
+        else if (collider.CompareTag("Pedestal") && nearbyPedestals.Contains(collider))
+        {
+            nearbyPedestals.Remove(collider);
+        }
+    }
+
+
+
+
+
+
+
     //public GameObject landPrefab;
     //public Transform landParent;
-
-    public ItemCollection itemCollection;
-
-
-
-
-
-
-
 
     /*
     public void OnTriggerExit2D(Collider2D collision)
@@ -53,80 +137,5 @@ public class Explorer : MonoBehaviour
         MapManager.instance.AddRoomTile(newPosition);
     }
     */
-
-
-
-    private float initialMoveSpeed = 0.5f;
-
-    private void Update()
-    {
-        if (Input.GetKey("up"))
-        {
-            transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
-        }
-        else if (Input.GetKey("down"))
-        {
-            transform.Translate(Vector3.right * -moveSpeed * Time.deltaTime);
-        }
-
-        if (Input.GetKey("left"))
-        {
-            transform.Rotate(rotateSpeed * Vector3.forward);
-        }
-        else if (Input.GetKey("right"))
-        {
-            transform.Rotate(-rotateSpeed * Vector3.forward);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            initialMoveSpeed = moveSpeed;
-            moveSpeed = 1.5f;
-        }
-        else if (Input.GetKeyDown(KeyCode.Space))
-        {
-            moveSpeed = initialMoveSpeed;
-        }
-    }
-
-
-
-
-    private List<GameObject> nextTo = new List<GameObject>();
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        GameObject collider = collision.gameObject;
-        if (collider.tag == "Pedestal")
-        {
-            nextTo.Add(collider);
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        GameObject collider = collision.gameObject;
-        if (collider.tag == "Pedestal" && nextTo.Contains(collider))
-        {
-            nextTo.Remove(collider);
-        }
-    }
-
-
-    public void ItemClicked(Sprite item)
-    {
-        foreach (GameObject nextToGo in nextTo)
-        {
-            if (nextToGo.GetComponent<StatuePedestal>() != null)
-            {
-                if (nextToGo.GetComponent<StatuePedestal>().AddItem(item))
-                {
-                    // do something
-                    itemCollection.RemoveItem(item);
-                }
-                
-            }
-        }
-    }
 
 }

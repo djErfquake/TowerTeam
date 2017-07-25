@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-   
+
+    public List<Explorer> explorers = new List<Explorer>();
+    
 
 
 

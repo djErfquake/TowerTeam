@@ -21,7 +21,7 @@ public class DecorManager : MonoBehaviour
         decorations.transform.SetParent(roomTransform);
         decorations.transform.localPosition = Vector2.zero;
         decorations.transform.localScale = Vector2.one;
-        //decorations.transform.Rotate(Vector3.forward, roomRotations[Random.Range(0, roomRotations.Length)]);
+        //decorations.transform.Rotate(Vector3.forward, roomRotations[Random.Range(0, roomRotations.Length)]); // has to rotate items in room too
     }
 
 

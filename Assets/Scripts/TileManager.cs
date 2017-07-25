@@ -54,6 +54,9 @@ public class TileManager : MonoBehaviour
     public Sprite partA, partB, partC;
     public GameObject partAssemblyPrefab;
 
+    [Header("Blocker / Boulder")]
+    public GameObject blockerPrefab;
+
 
 
 
