@@ -7,13 +7,17 @@ public class Explorer : MonoBehaviour
     public float moveSpeed = 10f, rotateSpeed = 5f;
     private float initialMoveSpeed = 0.5f;
 
-    private  Vector3 itemHoldOffset = Vector3.up * 0.05f; 
+    private float itemHoldOffset = 0.05f; 
     private GameObject itemInRange;
     private List<GameObject> nearbyPedestals = new List<GameObject>();
+
+    public int playerIndex = 1;
+    public float deadThreshold = 0.1f;
 
 
     private void Update()
     {
+        // keyboard
         if (Input.GetKey("up"))
         {
             transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
@@ -32,6 +36,40 @@ public class Explorer : MonoBehaviour
             transform.Rotate(-rotateSpeed * Vector3.forward);
         }
 
+
+
+        // xbox controller
+
+        if (Mathf.Abs(Input.GetAxis("Joystick " + playerIndex + " Y")) > deadThreshold)
+        {
+            transform.Translate(Vector3.left * Input.GetAxis("Joystick " + playerIndex + " Y") * Time.deltaTime * moveSpeed);
+        }
+
+        if (Mathf.Abs(Input.GetAxis("Joystick " + playerIndex + " X")) > deadThreshold)
+        {
+            transform.Rotate(Input.GetAxis("Joystick " + playerIndex + " X") * Vector3.back * rotateSpeed);
+        }
+
+        if (itemInRange != null && Input.GetButtonDown("Joystick " + playerIndex + " A"))
+        {
+            PickupItem();
+
+        }
+        else if (itemInRange != null && Input.GetButtonUp("Joystick " + playerIndex + " A"))
+        {
+            DropItem();
+        }
+
+
+        if (Input.GetButtonDown("Joystick " + playerIndex + " A"))
+        {
+
+        }
+
+
+
+
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             initialMoveSpeed = moveSpeed;
@@ -44,22 +82,44 @@ public class Explorer : MonoBehaviour
 
         if (itemInRange != null && Input.GetKey(KeyCode.Z))
         {
-            itemInRange.transform.position = transform.position + itemHoldOffset;
+            PickupItem();
+
         }
         else if (itemInRange != null && Input.GetKeyUp(KeyCode.Z))
         {
-            foreach (GameObject nextToGo in nearbyPedestals)
-            {
-                StatuePedestal pedestal = nextToGo.GetComponent<StatuePedestal>();
-                if (pedestal != null && pedestal.AddItem(itemInRange.GetComponent<SpriteRenderer>().sprite))
-                {
-                    Destroy(itemInRange);
-                }
-            }
+            DropItem();
         }
     }
 
 
+
+    public void SetCostume(Sprite newCostume)
+    {
+        GetComponent<SpriteRenderer>().sprite = newCostume;
+    }
+
+
+    private void PickupItem()
+    {
+        //itemInRange.transform.position = transform.position + itemHoldOffset;
+
+        //Vector3 itemPosition = transform.position + (transform.rotation * itemHoldOffset);
+        Vector3 itemPosition = transform.position + (transform.right * itemHoldOffset);
+        itemInRange.transform.position = itemPosition;
+        itemInRange.transform.rotation = transform.rotation;
+    }
+
+    private void DropItem()
+    {
+        foreach (GameObject nextToGo in nearbyPedestals)
+        {
+            StatuePedestal pedestal = nextToGo.GetComponent<StatuePedestal>();
+            if (pedestal != null && pedestal.AddItem(itemInRange.GetComponent<SpriteRenderer>().sprite))
+            {
+                Destroy(itemInRange);
+            }
+        }
+    }
 
 
     
@@ -91,6 +151,10 @@ public class Explorer : MonoBehaviour
             nearbyPedestals.Remove(collider);
         }
     }
+
+
+
+
 
 
 

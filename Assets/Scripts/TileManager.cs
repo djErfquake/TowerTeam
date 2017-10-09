@@ -70,20 +70,22 @@ public class TileManager : MonoBehaviour
     }
 
 
-    public Sprite RandomFloor(Transform roomTransform)
+    public GameObject RandomFloor(SpriteRenderer spriteRenderer, Transform roomTransform)
     {
         Sprite randomFloor = floors[Random.Range(0, floors.Count)];
+        spriteRenderer.sprite = randomFloor;
 
+        GameObject decorObject;
         if (randomFloor.name == "Grass")
         {
-            DecorManager.instance.DecorateOutdoor(roomTransform);
+            decorObject = DecorManager.instance.DecorateOutdoor(roomTransform);
         }
         else
         {
-            DecorManager.instance.DecorateIndoor(roomTransform);
+            decorObject = DecorManager.instance.DecorateIndoor(roomTransform);
         }
 
-        return randomFloor;
+        return decorObject;
     }
 
 

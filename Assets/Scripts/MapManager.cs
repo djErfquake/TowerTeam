@@ -43,10 +43,10 @@ public class MapManager : MonoBehaviour
             {
                 string tileName = r.ToString() + c.ToString();
                 GameObject roomTile = GameObject.Find(tileName);
-                roomTile.GetComponent<SpriteRenderer>().sprite = tileManager.RandomFloor(roomTile.transform);
+                GameObject decorLayer = tileManager.RandomFloor(roomTile.GetComponent<SpriteRenderer>(), roomTile.transform);
+                RoomWithItems roomDecorations = decorLayer.GetComponent<RoomWithItems>();
                 Room room = roomTile.GetComponent<Room>();
 
-                //RandomizeDoorways(roomTile);
                 //roomTile.SetActive(false);
 
                 float xPos = c - Mathf.FloorToInt(size.x / 2);
@@ -66,14 +66,14 @@ public class MapManager : MonoBehaviour
                     if (roomLetter == TileManager.ROOM_WALL_SWITCH)
                     {
                         GameObject wallSwitch = Instantiate(tileManager.wallSwitchButtonPrefab);
-                        wallSwitch.transform.parent = roomTile.transform;
-                        wallSwitch.transform.localPosition = roomTile.GetComponentInChildren<RoomWithItems>().GetRandomItemPosition() / wallSwitch.transform.localScale.x;
+                        wallSwitch.transform.parent = roomDecorations.transform;
+                        wallSwitch.transform.localPosition = roomDecorations.GetRandomItemPosition() / roomTile.transform.localScale.x;
                     }
                     else if (roomLetter == TileManager.ROOM_PART)
                     {
                         GameObject monkeyPart = Instantiate(tileManager.itemPrefab);
-                        monkeyPart.transform.parent = roomTile.transform;
-                        monkeyPart.transform.localPosition = roomTile.GetComponentInChildren<RoomWithItems>().GetRandomItemPosition() / monkeyPart.transform.localScale.x;
+                        monkeyPart.transform.parent = roomDecorations.transform;
+                        monkeyPart.transform.localPosition = roomDecorations.GetRandomItemPosition() / roomTile.transform.localScale.x;
                         if (monkeyParts == 0)
                         {
                             monkeyPart.GetComponent<SpriteRenderer>().sprite = tileManager.partA;
@@ -92,8 +92,8 @@ public class MapManager : MonoBehaviour
                     else if (roomLetter == TileManager.ROOM_PART_ASSEMBLY)
                     {
                         GameObject pedestal = Instantiate(tileManager.partAssemblyPrefab);
-                        pedestal.transform.parent = roomTile.transform;
-                        pedestal.transform.localPosition = roomTile.GetComponentInChildren<RoomWithItems>().GetRandomItemPosition() / pedestal.transform.localScale.x;
+                        pedestal.transform.parent = roomDecorations.transform;
+                        pedestal.transform.localPosition = roomDecorations.GetRandomItemPosition() / roomTile.transform.localScale.x;
                         pedestal.GetComponent<StatuePedestal>().completeAction = MonkeyPartsAssembled;
                     }
                     else if (roomLetter == TileManager.ROOM_BLOCKER)

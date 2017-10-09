@@ -44,11 +44,11 @@ public class Boulder : MonoBehaviour
         
         if (colliderObject.CompareTag("Player") && !playersInRange.Contains(colliderObject))
         {
-            Debug.Log(colliderObject.name + " entered");
+            //Debug.Log(colliderObject.name + " entered");
             playersInRange.Add(colliderObject);
             if (playersInRange.Count == GameManager.instance.explorers.Count)
             {
-                rb.mass = 1f;
+                rb.mass = 0.5f;
             }
         }
     }
@@ -59,7 +59,7 @@ public class Boulder : MonoBehaviour
         
         if (colliderObject.CompareTag("Player") && playersInRange.Contains(colliderObject))
         {
-            Debug.Log(colliderObject.name + " exited");
+            //Debug.Log(colliderObject.name + " exited");
             playersInRange.Remove(colliderObject);
             if (playersInRange.Count < GameManager.instance.explorers.Count)
             {
