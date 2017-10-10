@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 65d1302bbeeb9604e983fd5db6938a58
-timeCreated: 1500060132
+timeCreated: 1507656165
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
@@ -178,7 +178,7 @@ TextureImporter:
     21300342: shooter_tiles_171
     21300344: shooter_tiles_172
     21300346: shooter_tiles_173
-    21300348: shooter_tiles_174
+    21300348: stairs-base
     21300350: shooter_tiles_175
     21300352: shooter_tiles_176
     21300354: shooter_tiles_177
@@ -443,7 +443,7 @@ TextureImporter:
     21300872: shooter_tiles_436
     21300874: shooter_tiles_437
     21300876: shooter_tiles_438
-    21300878: shooter_tiles_439
+    21300878: stair
     21300880: shooter_tiles_440
     21300882: shooter_tiles_441
     21300884: couch_green
@@ -2881,7 +2881,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shooter_tiles_174
+      name: stairs-base
       rect:
         serializedVersion: 2
         x: 1792
@@ -6040,7 +6040,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: shooter_tiles_439
+      name: stair
       rect:
         serializedVersion: 2
         x: 1408

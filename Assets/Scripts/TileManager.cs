@@ -14,6 +14,7 @@ public class TileManager : MonoBehaviour
     public static char ROOM_NONE = '1';
 
     public static char ROOM_START = 'S';
+    public static char ROOM_END = 'E';
 
     public static char ROOM_BLOCKER = 'B';
     public static char ROOM_PART = 'm';
@@ -44,6 +45,9 @@ public class TileManager : MonoBehaviour
 
 
     // prefabs
+    [Header("End Stairs")]
+    public GameObject endPrefab;
+
     [Header("Prefabs")]
     public GameObject itemPrefab;
 

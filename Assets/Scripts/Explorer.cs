@@ -14,6 +14,8 @@ public class Explorer : MonoBehaviour
     public int playerIndex = 1;
     public float deadThreshold = 0.1f;
 
+    public bool nearStairs = false;
+
 
     private void Update()
     {
@@ -61,9 +63,9 @@ public class Explorer : MonoBehaviour
         }
 
 
-        if (Input.GetButtonDown("Joystick " + playerIndex + " A"))
+        if (nearStairs && MapManager.instance.pedestalComplete && Input.GetButtonDown("Joystick " + playerIndex + " A"))
         {
-
+            Debug.Log("Player " + playerIndex + " exiting stage");
         }
 
 
@@ -136,6 +138,10 @@ public class Explorer : MonoBehaviour
         {
             nearbyPedestals.Add(collider);
         }
+        else if (collider.CompareTag("Stairs"))
+        {
+            nearStairs = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -149,6 +155,10 @@ public class Explorer : MonoBehaviour
         else if (collider.CompareTag("Pedestal") && nearbyPedestals.Contains(collider))
         {
             nearbyPedestals.Remove(collider);
+        }
+        else if (collider.CompareTag("Stairs"))
+        {
+            nearStairs = false;
         }
     }
 

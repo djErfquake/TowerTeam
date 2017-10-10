@@ -1,4 +1,23 @@
 {
+  "training": [
+    {
+      "name": "first training level",
+      "training-text": "",
+      "rooms":
+      [
+        "         ",
+        "         ",
+        " |       ",
+        "-+-+-+-+-",
+        "m m E m M",
+        "-+-+-+-+-",
+        "         ",
+        "         ",
+        "         "
+      ]
+    }
+  ],
+
   "levels": [
     {
       "name": "first level",
@@ -6,7 +25,7 @@
       [
         "m|s p  Dm",
         " +-+ + +-",
-        " |1| |S  ",
+        " |1| |S E",
         " +-+ +-+-",
         "B    |1 1",
         " +-+ +-+-",

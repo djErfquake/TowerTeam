@@ -12,6 +12,9 @@ public class MapManager : MonoBehaviour
 
     private TileManager tileManager;
 
+    public bool pedestalComplete = false;
+
+
     private void Start()
     {
         tileManager = TileManager.instance;
@@ -63,7 +66,14 @@ public class MapManager : MonoBehaviour
                 }
                 else
                 {
-                    if (roomLetter == TileManager.ROOM_WALL_SWITCH)
+                    if (roomLetter == TileManager.ROOM_END)
+                    {
+                        GameObject stairs = Instantiate(tileManager.endPrefab);
+                        stairs.transform.parent = roomDecorations.transform;
+                        stairs.transform.localScale = Vector3.one;
+                        stairs.transform.localPosition = roomDecorations.GetRandomItemPosition() / roomTile.transform.localScale.x;
+                    }
+                    else if (roomLetter == TileManager.ROOM_WALL_SWITCH)
                     {
                         GameObject wallSwitch = Instantiate(tileManager.wallSwitchButtonPrefab);
                         wallSwitch.transform.parent = roomDecorations.transform;
@@ -193,6 +203,7 @@ public class MapManager : MonoBehaviour
     public void MonkeyPartsAssembled()
     {
         Debug.Log("Monkey Parts Assembled.  Show stairs to next floor/level");
+        pedestalComplete = true;
     }
 
 
