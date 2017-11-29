@@ -1,23 +1,45 @@
 {
-  "training": [
+  "training-levels": [
     {
       "name": "first training level",
-      "training-text": "",
+      "dialogue": [
+        "Tower Team is cooperative game about working together to get to the top of the tower.  To do so, puzzles must be solved.",
+        "Every floor has a golden monkey statue. To reach the next floor, you must assemble the statue in the correct order.  Only then will the stairs to the next floor open.",
+        "Find all of the golden monkey statue pieces and assemble them at the base."
+      ],
       "rooms":
       [
-        "         ",
-        "         ",
-        " |       ",
+        "1|1|1|1|1",
         "-+-+-+-+-",
-        "m m E m M",
+        "1|1|1|m|1",
+        "-+-+-+ +-",
+        "E S   M m",
+        "-+-+-+ +-",
+        "1|1|1|m|1",
         "-+-+-+-+-",
-        "         ",
-        "         ",
-        "         "
+        "1|1|1|1|1"
+      ]
+    },
+    {
+      "name": "boulder training level",
+      "dialogue": [
+        "Sometimes obsticals hinder your progress.",
+        "You'll need to work together to move the boulder blocking this path"
+      ],
+      "rooms":
+      [
+        "1|1|1|1|1",
+        "-+-+-+-+-",
+        "1|m|m|1|1",
+        "-+ + +-+-",
+        "1|M B E|1",
+        "-+ + +-+-",
+        "1|S|m|1|1",
+        "-+-+-+-+-",
+        "1|1|1|1|1"
       ]
     }
   ],
-
   "levels": [
     {
       "name": "first level",
@@ -25,7 +47,7 @@
       [
         "m|s p  Dm",
         " +-+ + +-",
-        " |1| |S E",
+        " |1| |S  ",
         " +-+ +-+-",
         "B    |1 1",
         " +-+ +-+-",

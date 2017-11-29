@@ -52,21 +52,29 @@ public class Explorer : MonoBehaviour
             transform.Rotate(Input.GetAxis("Joystick " + playerIndex + " X") * Vector3.back * rotateSpeed);
         }
 
-        if (itemInRange != null && Input.GetButtonDown("Joystick " + playerIndex + " A"))
-        {
-            PickupItem();
 
-        }
-        else if (itemInRange != null && Input.GetButtonUp("Joystick " + playerIndex + " A"))
+        if (Input.GetButtonDown("Joystick " + playerIndex + " A") || Input.GetKeyDown(KeyCode.Z))
         {
-            DropItem();
+            if (itemInRange != null)
+            {
+                PickupItem();
+
+            }
+            
+            if (nearStairs && ExitStairs.instance.opened)
+            {
+                Debug.Log("Player " + playerIndex + " exiting stage");
+            }
+        }
+        else if (Input.GetButtonUp("Joystick " + playerIndex + " A") || Input.GetKeyUp(KeyCode.Z))
+        {
+            if (itemInRange != null)
+            {
+                DropItem();
+            }
         }
 
 
-        if (nearStairs && MapManager.instance.pedestalComplete && Input.GetButtonDown("Joystick " + playerIndex + " A"))
-        {
-            Debug.Log("Player " + playerIndex + " exiting stage");
-        }
 
 
 
@@ -80,16 +88,6 @@ public class Explorer : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.Space))
         {
             moveSpeed = initialMoveSpeed;
-        }
-
-        if (itemInRange != null && Input.GetKey(KeyCode.Z))
-        {
-            PickupItem();
-
-        }
-        else if (itemInRange != null && Input.GetKeyUp(KeyCode.Z))
-        {
-            DropItem();
         }
     }
 
@@ -141,6 +139,7 @@ public class Explorer : MonoBehaviour
         else if (collider.CompareTag("Stairs"))
         {
             nearStairs = true;
+            Debug.Log("nearby Stairs");
         }
     }
 
@@ -159,6 +158,7 @@ public class Explorer : MonoBehaviour
         else if (collider.CompareTag("Stairs"))
         {
             nearStairs = false;
+            Debug.Log("not nearby Stairs");
         }
     }
 

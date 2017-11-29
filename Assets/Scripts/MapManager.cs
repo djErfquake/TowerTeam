@@ -5,25 +5,53 @@ using UnityEngine;
 
 public class MapManager : MonoBehaviour
 {
+    private JsonNode levelConfig;
+
     public Vector2 size = new Vector2(5, 3);
 
     private Dictionary<Vector2, GameObject> roomTiles = new Dictionary<Vector2, GameObject>();
     private GameObject startingRoomTile;
 
     private TileManager tileManager;
+    private DialogueManager dialogue;
 
+    public Vector2 startingPosition;
+
+    private ExitStairs exit;
     public bool pedestalComplete = false;
 
 
     private void Start()
     {
         tileManager = TileManager.instance;
+        dialogue = DialogueManager.instance;
+        levelConfig = ConfigHelper.Load(Application.streamingAssetsPath + "/levelConfig.json");
+    }
 
 
-        JsonNode levelConfig = ConfigHelper.Load(Application.streamingAssetsPath + "/levelConfig.json");
-        JsonNode level = levelConfig["levels"][0];
+    public void LoadTrainingLevel(int index)
+    {
+        LoadLevel(levelConfig["training-levels"][index]);
+    }
+
+    public void LoadNormalLevel(int index)
+    {
+        LoadLevel(levelConfig["levels"][index]);
+    }
+
+
+    private void LoadLevel(JsonNode level)
+    {
+        List<string> dialogueText = new List<string>();
+        JsonArray dialogueConfig = level["dialogue"] as JsonArray;
+        for (int i = 0; i < dialogueConfig.Count; i++)
+        {
+            dialogueText.Add(dialogueConfig[i]);
+        }
+        dialogue.SetText(dialogueText);
+
+
         int monkeyParts = 0;
-
 
         for (int r = 0; r < size.y; r++)
         {
@@ -66,12 +94,17 @@ public class MapManager : MonoBehaviour
                 }
                 else
                 {
-                    if (roomLetter == TileManager.ROOM_END)
+                    if (roomLetter == TileManager.ROOM_START)
+                    {
+                        startingPosition = new Vector2(xPos, yPos);
+                    }
+                    else if(roomLetter == TileManager.ROOM_END)
                     {
                         GameObject stairs = Instantiate(tileManager.endPrefab);
                         stairs.transform.parent = roomDecorations.transform;
                         stairs.transform.localScale = Vector3.one;
                         stairs.transform.localPosition = roomDecorations.GetRandomItemPosition() / roomTile.transform.localScale.x;
+                        exit = stairs.GetComponent<ExitStairs>();
                     }
                     else if (roomLetter == TileManager.ROOM_WALL_SWITCH)
                     {
@@ -97,7 +130,7 @@ public class MapManager : MonoBehaviour
                             monkeyPart.GetComponent<SpriteRenderer>().sprite = tileManager.partC;
                         }
                         monkeyParts++;
-                        
+
                     }
                     else if (roomLetter == TileManager.ROOM_PART_ASSEMBLY)
                     {
@@ -136,12 +169,7 @@ public class MapManager : MonoBehaviour
 
             }
         }
-
-
-
-
     }
-
 
 
 
@@ -204,6 +232,7 @@ public class MapManager : MonoBehaviour
     {
         Debug.Log("Monkey Parts Assembled.  Show stairs to next floor/level");
         pedestalComplete = true;
+        exit.Open();
     }
 
 

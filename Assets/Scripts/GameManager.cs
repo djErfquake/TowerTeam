@@ -85,9 +85,15 @@ public class GameManager : MonoBehaviour
         if (readyCharacters >= JoystickManager.instance.numOfJoysticks)
         {
             // go!
+            MapManager.instance.LoadTrainingLevel(0);
+
+            Vector3 startingPosition = MapManager.instance.startingPosition;
+            startingPosition.x -= 0.15f * (explorers.Count - 1);
             foreach (Explorer explorer in explorers)
             {
                 explorer.gameObject.SetActive(true);
+                explorer.transform.position = explorer.transform.position + startingPosition;
+                startingPosition.x += 0.2f;
             }
 
             gameScreen.SetActive(true);
@@ -96,6 +102,8 @@ public class GameManager : MonoBehaviour
 
             mode = Mode.Game;
             JoystickManager.instance.SetupForMode(mode);
+
+            DialogueManager.instance.Show();
         }
         else
         {
