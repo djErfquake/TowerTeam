@@ -6,6 +6,7 @@ public class Room : MonoBehaviour
 {
     public GameObject leftWall, rightWall, upWall, downWall;
     private GameObject wallSwitch;
+    public GameObject decor;
 
 
     public GameObject[] GetWalls()

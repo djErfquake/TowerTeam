@@ -94,9 +94,6 @@ public class TileManager : MonoBehaviour
 
 
 
-
-
-
     // singleton
     public static TileManager instance;
     private void Awake()

@@ -53,17 +53,19 @@ public class Explorer : MonoBehaviour
         }
 
 
-        if (Input.GetButtonDown("Joystick " + playerIndex + " A") || Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetButton("Joystick " + playerIndex + " A") || Input.GetKey(KeyCode.Z))
         {
             if (itemInRange != null)
             {
                 PickupItem();
-
             }
-            
+        }
+
+        if (Input.GetButtonDown("Joystick " + playerIndex + " A") || Input.GetKeyDown(KeyCode.Z))
+        {
             if (nearStairs && ExitStairs.instance.opened)
             {
-                Debug.Log("Player " + playerIndex + " exiting stage");
+                GameManager.instance.NextLevel();
             }
         }
         else if (Input.GetButtonUp("Joystick " + playerIndex + " A") || Input.GetKeyUp(KeyCode.Z))
@@ -139,7 +141,6 @@ public class Explorer : MonoBehaviour
         else if (collider.CompareTag("Stairs"))
         {
             nearStairs = true;
-            Debug.Log("nearby Stairs");
         }
     }
 
@@ -158,7 +159,6 @@ public class Explorer : MonoBehaviour
         else if (collider.CompareTag("Stairs"))
         {
             nearStairs = false;
-            Debug.Log("not nearby Stairs");
         }
     }
 

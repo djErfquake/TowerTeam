@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Game")]
     public GameObject gameScreen;
-
+    private int levelIndex = 0;
 
 
 
@@ -111,6 +111,22 @@ public class GameManager : MonoBehaviour
         }
 
         
+    }
+
+
+
+    public void NextLevel()
+    {
+        levelIndex++;
+        MapManager.instance.LoadTrainingLevel(levelIndex);
+        Vector3 startingPosition = MapManager.instance.startingPosition;
+        startingPosition.x -= 0.15f * (explorers.Count - 1);
+        foreach (Explorer explorer in explorers)
+        {
+            explorer.gameObject.SetActive(true);
+            explorer.transform.position = explorer.transform.position + startingPosition;
+            startingPosition.x += 0.2f;
+        }
     }
 
 

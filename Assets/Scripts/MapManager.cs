@@ -7,8 +7,9 @@ public class MapManager : MonoBehaviour
 {
     private JsonNode levelConfig;
 
-    public Vector2 size = new Vector2(5, 3);
+    public Vector2 size = new Vector2(5, 5);
 
+    public GameObject[] allTiles;
     private Dictionary<Vector2, GameObject> roomTiles = new Dictionary<Vector2, GameObject>();
     private GameObject startingRoomTile;
 
@@ -42,6 +43,27 @@ public class MapManager : MonoBehaviour
 
     private void LoadLevel(JsonNode level)
     {
+        // reset
+        roomTiles.Clear();
+        for (int i = 0; i < allTiles.Length; i++)
+        {
+            allTiles[i].SetActive(true);
+        }
+
+        // TODO:
+        /*
+        for (int i = 0; i < roomTiles.Count; i++)
+        {
+            GameObject decor = roomTiles[i].GetComponent<Room>().decor;
+            if (decor != null)
+            {
+                Destroy(decor);
+            }
+        }
+        */
+
+
+        // add new stuff
         List<string> dialogueText = new List<string>();
         JsonArray dialogueConfig = level["dialogue"] as JsonArray;
         for (int i = 0; i < dialogueConfig.Count; i++)
@@ -77,6 +99,7 @@ public class MapManager : MonoBehaviour
                 GameObject decorLayer = tileManager.RandomFloor(roomTile.GetComponent<SpriteRenderer>(), roomTile.transform);
                 RoomWithItems roomDecorations = decorLayer.GetComponent<RoomWithItems>();
                 Room room = roomTile.GetComponent<Room>();
+                room.decor = decorLayer;
 
                 //roomTile.SetActive(false);
 
