@@ -124,7 +124,7 @@ public class GameManager : MonoBehaviour
         foreach (Explorer explorer in explorers)
         {
             explorer.gameObject.SetActive(true);
-            explorer.transform.position = explorer.transform.position + startingPosition;
+            explorer.transform.position = new Vector3(-5, 0, 0) + startingPosition;
             startingPosition.x += 0.2f;
         }
     }

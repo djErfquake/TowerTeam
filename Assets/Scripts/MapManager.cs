@@ -44,23 +44,23 @@ public class MapManager : MonoBehaviour
     private void LoadLevel(JsonNode level)
     {
         // reset
+        foreach (KeyValuePair<Vector2, GameObject> roomTile in roomTiles)
+        {
+            GameObject decor = roomTile.Value.GetComponent<Room>().decor;
+            if (decor != null)
+            {
+                Destroy(decor);
+            }
+        }
+
+
         roomTiles.Clear();
         for (int i = 0; i < allTiles.Length; i++)
         {
             allTiles[i].SetActive(true);
         }
 
-        // TODO:
-        /*
-        for (int i = 0; i < roomTiles.Count; i++)
-        {
-            GameObject decor = roomTiles[i].GetComponent<Room>().decor;
-            if (decor != null)
-            {
-                Destroy(decor);
-            }
-        }
-        */
+        
 
 
         // add new stuff
