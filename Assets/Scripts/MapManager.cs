@@ -21,6 +21,7 @@ public class MapManager : MonoBehaviour
     // variables
     [HideInInspector]
     public Vector2 startingPosition;
+    private ExitStairs exit;
 
 
     private void Start()
@@ -87,10 +88,6 @@ public class MapManager : MonoBehaviour
                 {
                     GenerateRoom(x, y);
                 }
-                else if (x % 2 == 0 || y % 2 == 0)
-                {
-                    //GenerateDoorway(x, y);
-                }
             }
         }
     }
@@ -109,13 +106,75 @@ public class MapManager : MonoBehaviour
             roomGo.transform.SetParent(mapContainer);
             roomGo.transform.localPosition = new Vector2(roomPositionX, roomPositionY);
 
-            // do decor
+            Room room = roomGo.GetComponent<Room>();
+            SetDoorways(x, y, room);
+            GameObject decor = tileManager.GenerateRandomDecor(roomGo.GetComponent<SpriteRenderer>(), roomGo.transform);
+            room.decor = decor;
+            rooms.Add(room);
 
             // do items
-
+            SetItems(room, pixelColor);
         }
     }
 
+
+
+    private void SetItems(Room room, Color pixelColor)
+    {
+        if (pixelColor == tileManager.ROOM_START)
+        {
+            startingPosition = room.transform.localPosition;
+        }
+        else if (pixelColor == tileManager.ROOM_END)
+        {
+            GameObject stairs = Instantiate(tileManager.endPrefab);
+            stairs.transform.SetParent(room.transform);
+            stairs.transform.localScale = Vector2.one;
+            stairs.transform.localPosition = room.decor.GetComponent<RoomWithItems>().GetRandomItemPosition() / room.transform.localScale.x;
+            exit = stairs.GetComponent<ExitStairs>();
+        }
+    }
+
+
+
+    private void SetDoorways(int x, int y, Room room)
+    {
+        if (y + 1 < map.height)
+        {
+            Color upPixel = map.GetPixel(x, y + 1);
+            if (upPixel == Color.black)
+            {
+                room.SetDoorway(room.upWall, false);
+            }
+        }
+
+        if (y - 1 >= 0)
+        {
+            Color downPixel = map.GetPixel(x, y - 1);
+            if (downPixel == Color.black)
+            {
+                room.SetDoorway(room.downWall, false);
+            }
+        }
+
+        if (x + 1 < map.width)
+        {
+            Color rightPixel = map.GetPixel(x + 1, y);
+            if (rightPixel == Color.black)
+            {
+                room.SetDoorway(room.rightWall, false);
+            }
+        }
+
+        if (x - 1 >= 0)
+        {
+            Color leftPixel = map.GetPixel(x - 1, y);
+            if (leftPixel == Color.black)
+            {
+                room.SetDoorway(room.leftWall, false);
+            }
+        }
+    }
 
 
 

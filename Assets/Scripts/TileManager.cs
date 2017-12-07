@@ -10,32 +10,17 @@ public class TileManager : MonoBehaviour
     public static int DOORWAY_DOWN = 0;
 
 
-    public static char ROOM_EMPTY = ' ';
-    public static char ROOM_NONE = '1';
+    public Color ROOM_START = Color.green;
+    public Color ROOM_END = Color.red;
 
-    public static char ROOM_START = 'S';
-    public static char ROOM_END = 'E';
-
-    public static char ROOM_BLOCKER = 'B';
-    public static char ROOM_PART = 'm';
-    public static char ROOM_PART_ASSEMBLY = 'M';
-    public static char ROOM_SWITCH = 's';
-    public static char ROOM_POWERUP_PART = 'p';
-    public static char ROOM_POWERUP_ASSEMBLY = 'P';
-    public static char ROOM_WALL_SWITCH = 'd';
-
-
-    public static char WALL_NONE = ' ';
-    public static char WALL_VERTICAL = '|';
-    public static char WALL_HORIZONTAL = '-';
-    public static char WALL_SWITCH = 'D';
-
-
-
-
-    [Header("Room Info")]
-    public GameObject roomPrefab;
-    public Transform roomParent;
+    public Color ROOM_BLOCKER = Color.cyan;
+    public Color ROOM_PART;
+    public Color ROOM_PART_ASSEMBLY;
+    public Color ROOM_SWITCH;
+    public Color ROOM_POWERUP_PART;
+    public Color ROOM_POWERUP_ASSEMBLY;
+    public Color ROOM_WALL_SWITCH;
+    public Color WALL_SWITCH;
 
 
 
@@ -62,19 +47,7 @@ public class TileManager : MonoBehaviour
     public GameObject blockerPrefab;
 
 
-
-
-    public GameObject CreateTile(Vector2 pos)
-    {
-        GameObject newTile = Instantiate(roomPrefab);
-        newTile.transform.parent = roomParent;
-        newTile.transform.position = pos;
-
-        return newTile;
-    }
-
-
-    public GameObject RandomFloor(SpriteRenderer spriteRenderer, Transform roomTransform)
+    public GameObject GenerateRandomDecor(SpriteRenderer spriteRenderer, Transform roomTransform)
     {
         Sprite randomFloor = floors[Random.Range(0, floors.Count)];
         spriteRenderer.sprite = randomFloor;
