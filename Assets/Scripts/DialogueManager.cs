@@ -11,7 +11,6 @@ public class DialogueManager : MonoBehaviour
 
     private List<string> allText;
 
-    private Coroutine typingCoroutine;
     private int currentTextIndex = 0;
     private int currentLetterIndex = 0;
 
@@ -53,7 +52,7 @@ public class DialogueManager : MonoBehaviour
         diaglogue.text = "";
         shown = true;
 
-        GetComponent<RectTransform>().DOAnchorPosY(-540f, 0.5f).SetEase(Ease.OutBack).OnComplete(() => { typingCoroutine = StartCoroutine(TypeWords()); });
+        GetComponent<RectTransform>().DOAnchorPosY(-540f, 0.5f).SetEase(Ease.OutBack).OnComplete(() => { StartCoroutine(TypeWords()); });
     }
 
     
@@ -79,7 +78,7 @@ public class DialogueManager : MonoBehaviour
         {
             currentLetterIndex = 0;
             diaglogue.text = "";
-            typingCoroutine = StartCoroutine(TypeWords());
+            StartCoroutine(TypeWords());
         }
     }
 

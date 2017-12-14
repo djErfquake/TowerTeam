@@ -63,7 +63,7 @@ public class Explorer : MonoBehaviour
 
         if (Input.GetButtonDown("Joystick " + playerIndex + " A") || Input.GetKeyDown(KeyCode.Z))
         {
-            if (nearStairs && ExitStairs.instance.opened)
+            if (nearStairs && MapManager.instance.ExitOpened())
             {
                 GameManager.instance.NextLevel();
             }

@@ -11,38 +11,19 @@
     },
     {
       "name": "boulder training level",
+      "map": "Training Levels/b.png",
       "dialogue": [
-        "Sometimes obsticals hinder your progress.",
+        "Sometimes obsticles hinder your progress.",
         "You'll need to work together to move the boulder blocking this path"
-      ],
-      "rooms":
-      [
-        "1|1|1|1|1",
-        "-+-+-+-+-",
-        "1|m|m|1|1",
-        "-+ + +-+-",
-        "1|M B E|1",
-        "-+ + +-+-",
-        "1|S|m|1|1",
-        "-+-+-+-+-",
-        "1|1|1|1|1"
       ]
     }
   ],
   "levels": [
     {
-      "name": "first level",
-      "rooms":
-      [
-        "m|s p  Dm",
-        " +-+ + +-",
-        " |1| |S  ",
-        " +-+ +-+-",
-        "B    |1 1",
-        " +-+ +-+-",
-        "M|1|m P|1",
-        " + + +-+ ",
-        "s|1|d|1 1"
+      "name": "first test",
+      "map": "Hard/a.png",
+      "dialogue": [
+        "This is your first real test.  Use the knowledge you've gained to escape."
       ]
     }
   ]

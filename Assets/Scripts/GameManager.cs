@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
         if (readyCharacters >= JoystickManager.instance.numOfJoysticks)
         {
             // go!
-            MapManager.instance.LoadTrainingLevel(0);
+            MapManager.instance.NextLevel();
 
             Vector3 startingPosition = MapManager.instance.startingPosition;
             startingPosition.x -= 0.15f * (explorers.Count - 1);
@@ -118,7 +118,7 @@ public class GameManager : MonoBehaviour
     public void NextLevel()
     {
         levelIndex++;
-        MapManager.instance.LoadTrainingLevel(levelIndex);
+        MapManager.instance.NextLevel();
         Vector3 startingPosition = MapManager.instance.startingPosition;
         startingPosition.x -= 0.15f * (explorers.Count - 1);
         foreach (Explorer explorer in explorers)
@@ -147,7 +147,7 @@ public class GameManager : MonoBehaviour
 
 
 
-
+    
 
 
 

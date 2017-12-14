@@ -49,15 +49,4 @@ public class ExitStairs : MonoBehaviour
         opened = false;
     }
 
-
-    #region singleton
-    // singleton
-    public static ExitStairs instance;
-    private void Awake()
-    {
-        if (instance && instance != this) { Destroy(gameObject); return; }
-        instance = this;
-    }
-    #endregion
-
 }

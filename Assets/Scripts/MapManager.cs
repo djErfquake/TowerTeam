@@ -16,12 +16,15 @@ public class MapManager : MonoBehaviour
     public Transform mapContainer;
     public GameObject roomPrefab;
     private List<Room> rooms = new List<Room>();
-
+    private List<Room> wallSwitchRooms = new List<Room>();
 
     // variables
     [HideInInspector]
+    private int levelNumber = 0;
+    private bool doneWithTraining = false;
     public Vector2 startingPosition;
     private ExitStairs exit;
+    private int partCount = 0;
 
 
     private void Start()
@@ -31,6 +34,27 @@ public class MapManager : MonoBehaviour
         levelConfig = ConfigHelper.Load(Application.streamingAssetsPath + "/levelConfig.json");
     }
 
+
+    public void NextLevel()
+    {
+        JsonArray trainingLevels = levelConfig["training-levels"] as JsonArray;
+        if (trainingLevels.Count > levelNumber)
+        {
+            LoadTrainingLevel(levelNumber);
+        }
+        else
+        {
+            if (!doneWithTraining)
+            {
+                levelNumber = 0;
+            }
+
+            LoadNormalLevel(levelNumber);
+            doneWithTraining = true;
+        }
+
+        levelNumber++;
+    }
 
     public void LoadTrainingLevel(int index)
     {
@@ -50,8 +74,9 @@ public class MapManager : MonoBehaviour
         {
             Room r = rooms[0];
             rooms.RemoveAt(0);
-            Destroy(r);
+            Destroy(r.gameObject);
         }
+        wallSwitchRooms.Clear();
 
         // load new dialogue
         List<string> dialogueText = new List<string>();
@@ -64,6 +89,7 @@ public class MapManager : MonoBehaviour
 
 
         // load rooms and add decor and items
+        partCount = 0;
         LoadMap(Application.streamingAssetsPath + "/Maps/" + level["map"]);
     }
 
@@ -121,17 +147,64 @@ public class MapManager : MonoBehaviour
 
     private void SetItems(Room room, Color pixelColor)
     {
-        if (pixelColor == tileManager.ROOM_START)
+        if (ColorsMatch(pixelColor, tileManager.ROOM_START))
         {
             startingPosition = room.transform.localPosition;
         }
-        else if (pixelColor == tileManager.ROOM_END)
+        else if (ColorsMatch(pixelColor, tileManager.ROOM_END))
         {
             GameObject stairs = Instantiate(tileManager.endPrefab);
             stairs.transform.SetParent(room.transform);
             stairs.transform.localScale = Vector2.one;
             stairs.transform.localPosition = room.decor.GetComponent<RoomWithItems>().GetRandomItemPosition() / room.transform.localScale.x;
             exit = stairs.GetComponent<ExitStairs>();
+        }
+        else if (ColorsMatch(pixelColor, tileManager.ROOM_PART_ASSEMBLY))
+        {
+            GameObject pedestal = Instantiate(tileManager.partAssemblyPrefab);
+            pedestal.transform.SetParent(room.transform);
+            pedestal.transform.localPosition = room.decor.GetComponent<RoomWithItems>().GetRandomItemPosition() / room.transform.localScale.x;
+            pedestal.GetComponent<StatuePedestal>().completeAction = PartsAssembled;
+        }
+        else if (ColorsMatch(pixelColor, tileManager.ROOM_PART))
+        {
+            GameObject part = Instantiate(tileManager.itemPrefab);
+            part.transform.SetParent(room.transform);
+            part.transform.localPosition = room.decor.GetComponent<RoomWithItems>().GetRandomItemPosition() / room.transform.localScale.x;
+            if (partCount == 0)
+            {
+                part.GetComponent<SpriteRenderer>().sprite = tileManager.partA;
+            }
+            else if (partCount == 1)
+            {
+                part.GetComponent<SpriteRenderer>().sprite = tileManager.partB;
+            }
+            else if (partCount == 2)
+            {
+                part.GetComponent<SpriteRenderer>().sprite = tileManager.partC;
+            }
+            partCount++;
+        }
+        else if (ColorsMatch(pixelColor, tileManager.ROOM_BLOCKER))
+        {
+            GameObject blocker = Instantiate(tileManager.blockerPrefab);
+            blocker.transform.SetParent(room.transform);
+            blocker.transform.localScale = Vector3.one;
+            blocker.transform.localPosition = new Vector2(0, -2.3f);
+        }
+        else if (ColorsMatch(pixelColor, tileManager.ROOM_POWERUP_ASSEMBLY))
+        {
+
+        }
+        else if (ColorsMatch(pixelColor, tileManager.ROOM_POWERUP_PART))
+        {
+
+        }
+        else if (ColorsMatch(pixelColor, tileManager.ROOM_WALL_SWITCH))
+        {
+            GameObject wallSwitch = Instantiate(tileManager.wallSwitchButtonPrefab);
+            wallSwitch.transform.SetParent(room.transform);
+            wallSwitch.transform.localPosition = room.decor.GetComponent<RoomWithItems>().GetRandomItemPosition() / room.transform.localScale.x;
         }
     }
 
@@ -146,6 +219,11 @@ public class MapManager : MonoBehaviour
             {
                 room.SetDoorway(room.upWall, false);
             }
+            else if (ColorsMatch(upPixel, tileManager.WALL_SWITCH))
+            {
+                room.SetWallSwitch(Room.WallSide.up);
+                wallSwitchRooms.Add(room);
+            }
         }
 
         if (y - 1 >= 0)
@@ -154,6 +232,11 @@ public class MapManager : MonoBehaviour
             if (downPixel == Color.black)
             {
                 room.SetDoorway(room.downWall, false);
+            }
+            else if (ColorsMatch(downPixel, tileManager.WALL_SWITCH))
+            {
+                room.SetWallSwitch(Room.WallSide.down);
+                wallSwitchRooms.Add(room);
             }
         }
 
@@ -164,6 +247,11 @@ public class MapManager : MonoBehaviour
             {
                 room.SetDoorway(room.rightWall, false);
             }
+            else if (ColorsMatch(rightPixel, tileManager.WALL_SWITCH))
+            {
+                room.SetWallSwitch(Room.WallSide.right);
+                wallSwitchRooms.Add(room);
+            }
         }
 
         if (x - 1 >= 0)
@@ -173,7 +261,19 @@ public class MapManager : MonoBehaviour
             {
                 room.SetDoorway(room.leftWall, false);
             }
+            else if (ColorsMatch(leftPixel, tileManager.WALL_SWITCH))
+            {
+                room.SetWallSwitch(Room.WallSide.left);
+                wallSwitchRooms.Add(room);
+            }
         }
+    }
+
+
+
+    private bool ColorsMatch(Color a, Color b)
+    {
+        return (Mathf.Abs(a.r - b.r) < 0.1) && (Mathf.Abs(a.g - b.g) < 0.1) && (Mathf.Abs(a.b - b.b) < 0.1);
     }
 
 
@@ -184,13 +284,35 @@ public class MapManager : MonoBehaviour
     // maze logic
     public void WallSwitchActivated()
     {
-        //foreach (KeyValuePair<Vector2, GameObject> room in roomTiles)
-        //{
-        //    room.Value.GetComponent<Room>().RemoveWallSwitch();
-        //}
+        foreach (Room r in wallSwitchRooms)
+        {
+            r.RemoveWallSwitch();
+        }
+    }
+
+    public void PartsAssembled()
+    {
+        Debug.Log("Monkey Parts Assembled.  Show stairs to next floor/level");
+        exit.Open();
     }
 
 
+    public bool ExitOpened()
+    {
+        return exit != null && exit.opened;
+    }
+
+
+
+
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            LoadNormalLevel(0);
+        }
+    }
 
 
 

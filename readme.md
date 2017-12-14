@@ -29,14 +29,15 @@ A screenshot will be saved the desktop if the corner code sequence "14141" is en
 The are all of the puzzles that may be included in the mansion:
 - [x] A pressure plate, that when stepped on opens a doorway.
 - [x] 3 parts of a statue, that when all of the pieces of the puzzle are assembled in the correct order on its pedestal, unlock the stairs to the next floor.
-- [ ] A giant blocker, that is only moved when all players simultaneously push on it.
+- [x] A giant blocker, that is only moved when all players simultaneously push on it.
 - [ ] An orb, that when placed on its pedestal gives players a power-up ability such as more time.
 - [ ] Levers, that when pulled at the same exact time does something
+- [ ] all players have flashlights, but there is a lightswitch somewhere in the level
 
 -----
 
 ## To Do
-- [ ] Add fog so players can't see everything
+
 - [ ] Randomly generate levels
 - [x] Multiplayer
 - [ ] Puzzles implemented
